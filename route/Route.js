@@ -1,7 +1,7 @@
 import express from 'express'
 import { createUser, getUsers } from '../controllers/UserController.js'
 import { getProductById, getProducts, createProduct, updateProduct, deleteProduct } from '../controllers/ProdukController.js'
-import { createSampah, getSampah, getSampahById, updateSampah } from '../controllers/SampahController.js'
+import { createSampah, getSampah, getSampahById, updateSampah, deleteSampah } from '../controllers/SampahController.js'
 
 const router = express.Router()
 
@@ -21,6 +21,9 @@ router.get('/sampah', getSampah)
 router.get('/sampah/:id', getSampahById)
 router.post('/sampah', createSampah)
 router.put('/sampah/:id', updateSampah)
-router.delete('/sampah/:id', updateSampah)
+router.delete('/sampah/:id', deleteSampah)
+
+// Ongkir Routing
+
 
 export default router

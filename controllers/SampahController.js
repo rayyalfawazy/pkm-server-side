@@ -49,7 +49,7 @@ export const updateSampah = async (req, res) => {
 }
  
 
-export const deleteProduct = async (req, res) => {
+export const deleteSampah = async (req, res) => {
     try {
         await Sampah.destroy({
             where: {

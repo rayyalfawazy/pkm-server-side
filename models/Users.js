@@ -6,23 +6,21 @@ import bcrypt from 'bcrypt'
 const { DataTypes } = Sequelize;
 
 const Users = db.define('users', {
+    name: {
+        type: DataTypes.STRING
+    },
     username: {
         type: DataTypes.STRING
     },
     password: {
         type: DataTypes.STRING
     },
+    refresh_token: {
+        type: DataTypes.STRING
+    }
 }, {
     freezeTableName: true,
     timestamps: false,
-    instanceMethods: {
-        generateHash(password) {
-            return bcrypt.hash(password, bcrypt.genSaltSync(8))
-        },
-        validPassword(password) {
-            return bcrypt.compare(password, this.password)
-        }
-    }
 })
 
 export default Users

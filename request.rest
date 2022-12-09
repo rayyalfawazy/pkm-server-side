@@ -1,0 +1,11 @@
+GET http://localhost:5000/users
+###
+POST http://localhost:5000/users
+Content-Type: aplication/json
+
+{
+    "name":"Rayyan Alfawazy",
+    "username":"rayyan_alfawazy",
+    "password":"12345678",
+    "confPassword":"12345678",
+}

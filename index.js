@@ -8,7 +8,10 @@ const app = express();
 // use express json
 app.use(express.json());
 // use cors
-app.use(cors());
+app.use(cors({
+    credentials:true,
+    origin:'http://localhost:3000'
+}));
  
 // Testing database connection 
 try {

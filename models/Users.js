@@ -1,13 +1,12 @@
 import { Sequelize } from "sequelize";
 import db from "../config/database.js";
-import bcrypt from 'bcrypt'
 
 // Init datatypes
 const { DataTypes } = Sequelize;
 
 const Users = db.define('users', {
     name: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
     },
     username: {
         type: DataTypes.STRING

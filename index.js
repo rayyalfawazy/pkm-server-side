@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import db from "./config/database.js";
 import router from "./route/Route.js";
+import session from "express-session";
 
 // Init express
 const app = express();
@@ -11,6 +12,14 @@ app.use(express.json());
 app.use(cors({
     credentials:true,
     origin:'http://localhost:3000'
+}));
+app.use(session({
+    secret:'4903hjr93yuufy90rawr0309urfehfy89yftj3pm3k3fjeihf',
+    resave:false,
+    saveUninitialized:true,
+    cookie: {
+        secure: 'auto'
+    }
 }));
  
 // Testing database connection 

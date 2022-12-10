@@ -3,6 +3,10 @@ import cors from "cors";
 import db from "./config/database.js";
 import router from "./route/Route.js";
 import session from "express-session";
+import dotenv from "dotenv"
+import cookieParser from "cookie-parser";
+
+dotenv.config();
 
 // Init express
 const app = express();
@@ -21,6 +25,7 @@ app.use(session({
         secure: 'auto'
     }
 }));
+app.use(cookieParser());
  
 // Testing database connection 
 try {

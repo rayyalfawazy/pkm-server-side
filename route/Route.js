@@ -1,5 +1,4 @@
 import express from 'express'
-import { createUser, getUsers } from '../controllers/UserController.js'
 import { getProductById, getProducts, createProduct, updateProduct, deleteProduct } from '../controllers/ProdukController.js'
 import { createSampah, getSampah, getSampahById, updateSampah, deleteSampah } from '../controllers/SampahController.js'
 

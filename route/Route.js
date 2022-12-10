@@ -6,8 +6,7 @@ import { createSampah, getSampah, getSampahById, updateSampah, deleteSampah } fr
 const router = express.Router()
 
 // User Routing
-router.get('/users', getUsers)
-router.post('/users', createUser)
+
 
 // Produk Routing
 router.get('/products', getProducts)

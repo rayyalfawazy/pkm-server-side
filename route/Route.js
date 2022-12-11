@@ -1,10 +1,22 @@
 import express from 'express'
+import { getUsers, getUserById, createUser, updateUser, deleteUser } from '../controllers/UserController.js'
 import { getProductById, getProducts, createProduct, updateProduct, deleteProduct } from '../controllers/ProdukController.js'
 import { createSampah, getSampah, getSampahById, updateSampah, deleteSampah } from '../controllers/SampahController.js'
+import {login, logout, me} from '../controllers/AuthController.js'
 
 const router = express.Router()
 
 // User Routing
+router.get('/users', getUsers)
+router.get('/users/:id', getUserById)
+router.post('/users', createUser)
+router.put('/users/:id', updateUser)
+router.delete('/users/:id', deleteUser)
+
+// Auth Routing
+router.get('/me', me)
+router.post('/login', login)
+router.delete('/logout', logout)
 
 // Produk Routing
 router.get('/products', getProducts)

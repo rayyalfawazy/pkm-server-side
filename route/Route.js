@@ -3,15 +3,16 @@ import { getUsers, getUserById, createUser, updateUser, deleteUser } from '../co
 import { getProductById, getProducts, createProduct, updateProduct, deleteProduct } from '../controllers/ProdukController.js'
 import { createSampah, getSampah, getSampahById, updateSampah, deleteSampah } from '../controllers/SampahController.js'
 import {login, logout, me} from '../controllers/AuthController.js'
+import { verifyUser } from '../middleware/AuthUser.js'
 
 const router = express.Router()
 
 // User Routing
-router.get('/users', getUsers)
-router.get('/users/:id', getUserById)
-router.post('/users', createUser)
-router.put('/users/:id', updateUser)
-router.delete('/users/:id', deleteUser)
+router.get('/users' ,getUsers)
+router.get('/users/:id' ,getUserById)
+router.post('/users' ,createUser)
+router.put('/users/:id' ,updateUser)
+router.delete('/users/:id' ,deleteUser)
 
 // Auth Routing
 router.get('/me', me)

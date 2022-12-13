@@ -3,6 +3,7 @@ import { getUsers, getUserById, createUser, updateUser, deleteUser } from '../co
 import { getProductById, getProducts, createProduct, updateProduct, deleteProduct } from '../controllers/ProdukController.js'
 import { createSampah, getSampah, getSampahById, updateSampah, deleteSampah } from '../controllers/SampahController.js'
 import {login, logout, me} from '../controllers/AuthController.js'
+import { getPembukuan, getPembukuanById } from '../controllers/PembukuanController.js'
 
 const router = express.Router()
 
@@ -17,6 +18,10 @@ router.delete('/users/:id', deleteUser)
 router.get('/me', me)
 router.post('/login', login)
 router.delete('/logout', logout)
+
+// Pembukuan Routing
+router.get('/pembukuan', getPembukuan)
+router.get('/pembukuan/:id', getPembukuanById)
 
 // Produk Routing
 router.get('/products', getProducts)

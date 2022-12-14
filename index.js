@@ -1,10 +1,20 @@
 import express from "express";
 import cors from "cors";
 import db from "./config/database.js";
+import SequelizeStore from 'connect-session-sequelize'
 import router from "./route/Route.js";
+import session from "express-session";
+import dotenv from "dotenv"
+import cookieParser from "cookie-parser";
+
+dotenv.config();
 
 // Init express
 const app = express();
+const sessionStore = SequelizeStore(session.Store);
+const store = new sessionStore({
+    db:db
+});
 // use express json
 app.use(express.json());
 // use cors
@@ -12,6 +22,16 @@ app.use(cors({
     credentials:true,
     origin:'http://localhost:3000'
 }));
+app.use(session({
+    secret:'4903hjr93yuufy90rawr0309urfehfy89yftj3pm3k3fjeihf',
+    resave:false,
+    saveUninitialized:true,
+    store:store,
+    cookie: {
+        secure: 'auto'
+    }
+}));
+app.use(cookieParser());
  
 // Testing database connection 
 try {
@@ -20,7 +40,7 @@ try {
 } catch (error) {
     console.error('Unable to connect to the database:', error);
 }
- 
+
 // use router
 app.use(router);
  

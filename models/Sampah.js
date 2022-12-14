@@ -1,5 +1,6 @@
 import { Sequelize } from "sequelize";
 import db from "../config/database.js";
+import Users from "./Users.js";
 
 // Init datatypes
 const { DataTypes } = Sequelize;
@@ -28,6 +29,9 @@ const Sampah = db.define('sampah', {
     freezeTableName: true,
     timestamps: false
 })
+
+Users.hasMany(Sampah);
+Sampah.belongsTo(Users)
 
 // Export Skema
 export default Sampah

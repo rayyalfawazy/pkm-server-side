@@ -27,11 +27,11 @@ router.patch('/products/:id', verifyUser, updateProduct)
 router.delete('/products/:id', verifyUser, deleteProduct)
 
 // Sampah Routing
-router.get('/sampah', getSampah)
-router.get('/sampah/:id', getSampahById)
-router.post('/sampah', createSampah)
-router.put('/sampah/:id', updateSampah)
-router.delete('/sampah/:id', deleteSampah)
+router.get('/sampah', verifyUser, getSampah)
+router.get('/sampah/:id', verifyUser, getSampahById)
+router.post('/sampah', verifyUser, createSampah)
+router.patch('/sampah/:id', verifyUser, updateSampah)
+router.delete('/sampah/:id', verifyUser, deleteSampah)
 
 // Ongkir Routing
 

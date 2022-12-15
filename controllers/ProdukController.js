@@ -91,14 +91,14 @@ export const updateProduct = async (req, res) => {
         if(!products) return res.status(404).json({msg:"Data not found"})
         const {nama_produk, jenis_produk, harga, deskripsi} = req.body;
         if (req.role === 'admin') {
-           await Products.update({nama_produk, jenis_produk, harga},{
+           await Products.update({nama_produk, jenis_produk, harga, deskripsi},{
                 where:{
                     id: products.id
                 }
            })
         } else {
             if (req.userId !== products.userId) return res.status(403).json({msg:"Access denied"})
-            await Products.update({nama_produk, jenis_produk, harga},{
+            await Products.update({nama_produk, jenis_produk, harga, deskripsi},{
                 where:{
                     [Op.and]:[{id: products.id}, {userId: req.userId}]
                 }

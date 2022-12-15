@@ -36,7 +36,8 @@ const Users = db.define('users', {
             }
         },
         role:{
-            type:DataTypes.STRING,
+            type:DataTypes.ENUM,
+            values:['admin', 'member','user'],
             allowNull:false,
             validate:{
                 notEmpty:true,
@@ -45,5 +46,6 @@ const Users = db.define('users', {
     },{
         freezeTableName:true 
 })
+
 
 export default Users

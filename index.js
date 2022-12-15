@@ -22,6 +22,13 @@ app.use(cors({
     credentials:true,
     origin:'http://localhost:3000'
 }));
+
+
+// (async()=>{
+//     await db.sync({force:true});
+// })()
+
+
 app.use(session({
     secret:'4903hjr93yuufy90rawr0309urfehfy89yftj3pm3k3fjeihf',
     resave:false,
@@ -40,6 +47,7 @@ try {
 } catch (error) {
     console.error('Unable to connect to the database:', error);
 }
+
 
 // use router
 app.use(router);

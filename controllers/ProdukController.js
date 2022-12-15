@@ -5,7 +5,7 @@ import { Op } from "sequelize";
 export const getProducts = async (req, res) => {
     try{
         let response;
-        if (req.role === 'admin') {
+        if (req.role === 'admin' || req.role === 'user') {
             response = await Products.findAll({
                 include:[{
                     model:Users,
@@ -36,7 +36,7 @@ export const getProductById = async (req, res) => {
         });
         if(!prods) return res.status(404).json({msg:"Data not found"})
         let response;
-        if (req.role === 'admin') {
+        if (req.role === 'admin' || req.role === 'user') {
             response = await Products.findOne({
 
                 where:{

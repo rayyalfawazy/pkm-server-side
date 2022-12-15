@@ -5,14 +5,14 @@ import { Op } from "sequelize";
 export const getSampah = async (req, res) => {
     try{
         let response;
-        if (req.role === 'admin') {
+        if (req.role === 'admin' || req.role === 'user') {
             response = await Sampah.findAll({
                 include:[{
                     model:Users,
                     attributes:['name', 'email']
                 }]
             });
-        } else {
+        } else if (req.role === 'member') {
             response = await Sampah.findAll({
                 where:{userId:req.userId},
                 include:[{
@@ -36,7 +36,7 @@ export const getSampahById = async (req, res) => {
         });
         if(!sampah) return res.status(404).json({msg:"Data not found"})
         let response;
-        if (req.role === 'admin') {
+        if (req.role === 'admin' || req.role === 'user') {
             response = await Sampah.findOne({
                 where:{
                     id: req.params.id

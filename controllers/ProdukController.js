@@ -27,6 +27,21 @@ export const getProducts = async (req, res) => {
     }
 }
 
+export const getProductsPrelogin = async (req, res) => {
+    try {
+        let response;
+        response = await Products.findAll({
+            include:[{
+                model:Users,
+                attributes:['name', 'email']
+            }]
+        });
+        res.status(200).json(response)
+    } catch (error) {
+        res.status(500).json({msg:error.message})
+    }
+}
+
 export const getProductById = async (req, res) => {
     try{
         const prods = await Products.findOne({

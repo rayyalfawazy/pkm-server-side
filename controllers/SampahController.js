@@ -27,6 +27,21 @@ export const getSampah = async (req, res) => {
     }
 }
 
+export const getSampahPrelogin = async (req, res) => {
+    try {
+        let response;
+        response = await Sampah.findAll({
+            include:[{
+                model:Users,
+                attributes:['name', 'email']
+            }]
+        });
+        res.status(200).json(response)
+    } catch (error) {
+        res.status(500).json({msg:error.message})
+    }
+}
+
 export const getSampahById = async (req, res) => {
     try{
         const sampah = await Sampah.findOne({

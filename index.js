@@ -1,13 +1,14 @@
-import express from "express";
-import cors from "cors";
-import db from "./config/database.js";
-import SequelizeStore from 'connect-session-sequelize'
-import router from "./route/Route.js";
-import session from "express-session";
-import dotenv from "dotenv"
-import cookieParser from "cookie-parser";
 
-dotenv.config();
+
+const express = require('express');
+const cors = require('cors')
+const db = require('./config/database.js')
+const SequelizeStore = require('connect-session-sequelize')
+const router = require("./route/Route.js")
+const session = require("express-session");
+const cookieParser = require("cookie-parser");
+
+require('dotenv').config();
 
 // Init express
 const app = express();

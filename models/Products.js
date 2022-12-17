@@ -1,6 +1,6 @@
-import { Sequelize } from "sequelize";
-import db from "../config/database.js";
-import Users from "./Users.js";
+const Sequelize = require("sequelize");
+const db = require("../config/database.js");
+const Users = require("./Users.js");
 
 // Init datatypes
 const { DataTypes } = Sequelize;
@@ -44,4 +44,4 @@ Users.hasMany(Products);
 Products.belongsTo(Users)
 
 // Export Skema
-export default Products
+module.exports = Products

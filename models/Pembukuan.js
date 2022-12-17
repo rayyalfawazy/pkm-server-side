@@ -1,10 +1,10 @@
-import { Sequelize } from "sequelize";
-import db from "../config/database.js";
+const Sequelize = require('sequelize')
+const db = require("../config/database.js");
 
 // Init datatypes
 const { DataTypes } = Sequelize;
 
-export const Pembukuan = db.define('pembukuan', {
+const Pembukuan = db.define('pembukuan', {
     nama_member: {
         type: DataTypes.STRING
     },
@@ -24,3 +24,5 @@ export const Pembukuan = db.define('pembukuan', {
     freezeTableName: true,
     timestamps:false
 })
+
+module.exports = Pembukuan

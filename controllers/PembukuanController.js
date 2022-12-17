@@ -1,7 +1,7 @@
-import { Pembukuan } from "../models/Pembukuan.js";
-import { Op } from "sequelize";
+const { Pembukuan } = require("../models/Pembukuan.js");
+const { Op } = require("sequelize");
 
-export const getPembukuan = async (req, res) => {
+const getPembukuan = async (req, res) => {
     try{ 
         const pembukuan = await Pembukuan.findAll();
         res.json(pembukuan)
@@ -10,7 +10,7 @@ export const getPembukuan = async (req, res) => {
     }
 }
 
-export const searchPembukuan = async (req, res) => {
+const searchPembukuan = async (req, res) => {
     try{ 
         const pembukuan = await Pembukuan.findAll({
             where:{
@@ -25,7 +25,7 @@ export const searchPembukuan = async (req, res) => {
     }
 }
 
-export const getPembukuanById = async (req, res) => {
+const getPembukuanById = async (req, res) => {
     try{ 
         const produk = await Pembukuan.findOne({
             where:{
@@ -39,7 +39,7 @@ export const getPembukuanById = async (req, res) => {
 }
 
 
-export const createPembukuan = async (req, res) => {
+const createPembukuan = async (req, res) => {
     try {
         await Pembukuan.create(req.body);
         res.json({
@@ -50,7 +50,7 @@ export const createPembukuan = async (req, res) => {
     }
 }
 
-export const updatePembukuan = async (req, res) => {
+const updatePembukuan = async (req, res) => {
     try {
         await Pembukuan.update(req.body, {
             where: {
@@ -66,7 +66,7 @@ export const updatePembukuan = async (req, res) => {
 }
  
 
-export const deletePembukuan = async (req, res) => {
+const deletePembukuan = async (req, res) => {
     try {
         await Pembukuan.destroy({
             where: {
@@ -79,4 +79,13 @@ export const deletePembukuan = async (req, res) => {
     } catch (err) {
         console.log(err);
     }
+}
+
+module.exports = {
+    getPembukuan,
+    searchPembukuan,
+    getPembukuanById,
+    createPembukuan,
+    updatePembukuan,
+    deletePembukuan
 }

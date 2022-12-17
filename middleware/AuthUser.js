@@ -1,6 +1,6 @@
-import Users from "../models/Users.js";
+const Users = require("../models/Users.js");
 
-export const verifyUser = async (req, res, next) => {
+const verifyUser = async (req, res, next) => {
     if(!req.session.userId) {
         return res.status(401).json({msg:"Mohon login terlebih dahulu"})
     }
@@ -15,7 +15,7 @@ export const verifyUser = async (req, res, next) => {
     next()
 }
 
-export const adminOnly = async (req, res, next) => {
+const adminOnly = async (req, res, next) => {
     const user = await Users.findOne({
         where:{
             uuid: req.session.userId
@@ -24,4 +24,9 @@ export const adminOnly = async (req, res, next) => {
     if (!user) return res.status(404).json({msg:"User not found"});
     if (user.role !== 'admin') return res.status(403).json({msg:"Forbidden"});
     next()
+}
+
+module.exports = {
+    verifyUser,
+    adminOnly
 }

@@ -1,8 +1,8 @@
-import Sampah from "../models/Sampah.js";
-import Users from "../models/Users.js";
-import { Op } from "sequelize";
+const Sampah = require("../models/Sampah.js");
+const Users = require("../models/Users.js");
+const { Op } = require('sequelize');
 
-export const getSampah = async (req, res) => {
+const getSampah = async (req, res) => {
     try{
         let response;
         if (req.role === 'admin' || req.role === 'user') {
@@ -27,7 +27,7 @@ export const getSampah = async (req, res) => {
     }
 }
 
-export const getSampahPrelogin = async (req, res) => {
+const getSampahPrelogin = async (req, res) => {
     try {
         let response;
         response = await Sampah.findAll({
@@ -42,7 +42,7 @@ export const getSampahPrelogin = async (req, res) => {
     }
 }
 
-export const getSampahById = async (req, res) => {
+const getSampahById = async (req, res) => {
     try{
         const sampah = await Sampah.findOne({
             where:{
@@ -79,7 +79,7 @@ export const getSampahById = async (req, res) => {
     }
 }
 
-export const createSampah = async (req, res) => {
+const createSampah = async (req, res) => {
     const {nama_sampah, 
             jenis_sampah,
             kategori_sampah,
@@ -102,7 +102,7 @@ export const createSampah = async (req, res) => {
     }
 }
 
-export const updateSampah = async (req, res) => {
+const updateSampah = async (req, res) => {
     try{
         const sampah = await Sampah.findOne({
             where:{
@@ -137,7 +137,7 @@ export const updateSampah = async (req, res) => {
 }
  
 
-export const deleteSampah = async (req, res) => {
+const deleteSampah = async (req, res) => {
     try{
         const sampah = await Sampah.findOne({
             where:{
@@ -169,4 +169,13 @@ export const deleteSampah = async (req, res) => {
     } catch (error) {
         res.status(500).json({msg:error.message})
     }
+}
+
+module.exports = {
+    getSampah,
+    getSampahById,
+    getSampahPrelogin,
+    createSampah,
+    updateSampah,
+    deleteSampah
 }

@@ -1,8 +1,8 @@
-import Products from "../models/Products.js";
-import Users from "../models/Users.js";
-import { Op } from "sequelize";
+const Products = require("../models/Products.js");
+const Users = require("../models/Users.js");
+const { Op } = require('sequelize');
 
-export const getProducts = async (req, res) => {
+const getProducts = async (req, res) => {
     try{
         let response;
         if (req.role === 'admin' || req.role === 'user') {
@@ -27,7 +27,7 @@ export const getProducts = async (req, res) => {
     }
 }
 
-export const getProductsPrelogin = async (req, res) => {
+const getProductsPrelogin = async (req, res) => {
     try {
         let response;
         response = await Products.findAll({
@@ -42,7 +42,7 @@ export const getProductsPrelogin = async (req, res) => {
     }
 }
 
-export const getProductById = async (req, res) => {
+const getProductById = async (req, res) => {
     try{
         const prods = await Products.findOne({
             where:{
@@ -80,7 +80,7 @@ export const getProductById = async (req, res) => {
     }
 }
 
-export const createProduct = async (req, res) => {
+const createProduct = async (req, res) => {
     const {nama_produk, jenis_produk, harga, deskripsi} = req.body;
     try {
         await Products.create({
@@ -96,7 +96,7 @@ export const createProduct = async (req, res) => {
     }
 }
 
-export const updateProduct = async (req, res) => {
+const updateProduct = async (req, res) => {
     try{
         const products = await Products.findOne({
             where:{
@@ -126,7 +126,7 @@ export const updateProduct = async (req, res) => {
 }
  
 
-export const deleteProduct = async (req, res) => {
+const deleteProduct = async (req, res) => {
     try{
         const products = await Products.findOne({
             where:{
@@ -153,4 +153,13 @@ export const deleteProduct = async (req, res) => {
     } catch (error) {
         res.status(500).json({msg:error.message})
     }
+}
+
+module.exports = {
+    getProducts,
+    getProductById,
+    getProductsPrelogin,
+    createProduct,
+    updateProduct,
+    deleteProduct
 }

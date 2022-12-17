@@ -1,5 +1,5 @@
 // import sequelize
-import { Sequelize } from "sequelize";
+const Sequelize = require('sequelize')
 
 // create connection
 const db = new Sequelize('bank-sampah', 'root', '', {
@@ -8,4 +8,4 @@ const db = new Sequelize('bank-sampah', 'root', '', {
 });
 
 // export connection
-export default db;
+module.exports = db

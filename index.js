@@ -1,5 +1,3 @@
-
-
 const express = require('express');
 const cors = require('cors')
 const db = require('./config/database.js')
@@ -43,7 +41,7 @@ app.use(cookieParser());
  
 // Testing database connection 
 try {
-    await db.authenticate();
+    db.authenticate();
     console.log('Connection has been established successfully.');
 } catch (error) {
     console.error('Unable to connect to the database:', error);

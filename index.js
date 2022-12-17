@@ -11,15 +11,17 @@ require('dotenv').config();
 // Init express
 const app = express();
 const sessionStore = SequelizeStore(session.Store);
+
 const store = new sessionStore({
     db:db
 });
+
 // use express json
 app.use(express.json());
 // use cors
 app.use(cors({
     credentials:true,
-    origin:'http://192.168.100.4:3000'
+    origin:process.env.ORIGIN_SITE
 }));
 
 
@@ -29,7 +31,7 @@ app.use(cors({
 
 
 app.use(session({
-    secret:'4903hjr93yuufy90rawr0309urfehfy89yftj3pm3k3fjeihf',
+    secret:process.env.SESSION_SECRET,
     resave:false,
     saveUninitialized:true,
     store:store,
@@ -39,7 +41,7 @@ app.use(session({
 }));
 app.use(cookieParser());
  
-// Testing database connection 
+
 try {
     db.authenticate();
     console.log('Connection has been established successfully.');

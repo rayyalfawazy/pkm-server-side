@@ -4,7 +4,7 @@ const argon2 = require('argon2')
 const getUsers = async (req, res) => {
     try {
         const response = await Users.findAll({
-            attributes:['uuid','name','email','role']
+            attributes:['id','uuid','name','email','role']
         })
         res.status(200).json(response)
     } catch (error) {

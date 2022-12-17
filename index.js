@@ -36,6 +36,7 @@ app.use(session({
     secret:process.env.SESSION_SECRET,
     resave:false,
     saveUninitialized:true,
+    store:store,
     cookie: {
         secure: 'auto'
     }
@@ -55,4 +56,4 @@ try {
 app.use(router);
  
 // listen on port
-app.listen(5000, () => console.log('API serve at http://localhost:5000/'));
+app.listen(process.env.APP_PORT, () => console.log(`API serve at http://localhost:${process.env.APP_PORT}/`));

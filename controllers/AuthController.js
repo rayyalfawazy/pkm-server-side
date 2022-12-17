@@ -18,12 +18,12 @@ const login = async(req, res) => {
     const name = user.name
     const email = user.email
     const role = user.role
-    res.status(200).json({sessionId:req.session.userId ,data:{uuid, name, email, role}})
+    res.status(200).json({data:{uuid, name, email, role}})
 }
 
 const me = async (req, res) => {
     if(!req.session.userId) {
-        return res.status(401).json({request:req.session,msg:"Mohon login terlebih dahulu"})
+        return res.status(401).json({msg:"Mohon login terlebih dahulu"})
     }
     const user = await Users.findOne({
         attributes:['uuid','name','email','role'],

@@ -10,14 +10,10 @@ require('dotenv').config();
 
 // Init express
 const app = express();
-const sessionStore = SequelizeStore(session.Store);
-
-const store = new sessionStore({
-    db:db
-});
 
 // use express json
 app.use(express.json());
+
 // use cors
 app.use(cors({
     credentials:true,
@@ -29,12 +25,17 @@ app.use(cors({
 //     await db.sync({force:true});
 // })()
 
+const sessionStore = SequelizeStore(session.Store);
+const store = new sessionStore({
+    db:db
+});
+
+
 
 app.use(session({
     secret:process.env.SESSION_SECRET,
     resave:false,
     saveUninitialized:true,
-    store:store,
     cookie: {
         secure: 'auto'
     }

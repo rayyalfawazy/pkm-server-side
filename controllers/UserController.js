@@ -1,5 +1,5 @@
 const Users = require("../models/Users.js");
-const argon2 = require('argon2')
+const md5 = require('md5')
 
 const getUsers = async (req, res) => {
     try {
@@ -29,7 +29,7 @@ const getUserById = async (req, res) => {
 const createUser = async (req, res) => {
     const {name, email, password, confPassword, role} = req.body;
     if (password !== confPassword) return res.status(400).json({msg:"Password and Confirm Password not match"})
-    const hashPassword = await argon2.hash(password);
+    const hashPassword = md5(password);
     try {
         await Users.create({
             name:name,
@@ -55,7 +55,7 @@ const updateUser = async (req, res) => {
     if (password === "" || password === null) {
         hashPassword = user.password
     } else {
-        hashPassword = await argon2.hash(password)
+        hashPassword = md5(password)
     }
     if (password !== confPassword) return res.status(400).json({msg:"Password and Confirm Password not match"})
     try {
@@ -66,7 +66,7 @@ const updateUser = async (req, res) => {
             role:role
         },{
             where:{
-                id:user.id
+                id:user.uuid
             }
         })
         res.status(200).json({msg:"User updated"})

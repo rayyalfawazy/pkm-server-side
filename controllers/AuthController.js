@@ -1,5 +1,5 @@
 const Users = require("../models/Users.js");
-const argon2 = require('argon2');
+const md5 = require('md5')
 
 const login = async(req, res) => {
     const user = await Users.findOne({
@@ -9,7 +9,13 @@ const login = async(req, res) => {
     });
     if (!user) return res.status(404).json({msg:"User email not found"});
 
-    const match = await argon2.verify(user.password, req.body.password);
+    const match = (dataPassword, reqPassword) => {
+        if (md5(reqPassword) === dataPassword) {
+            return true
+        }
+        return false
+    }
+
 
     if (!match) return res.status(400).json({msg:"Password salah"});
 

@@ -3,8 +3,8 @@ const Sequelize = require('sequelize')
 require('dotenv').config()
 
 // create connection
-const db = new Sequelize(process.env.REMOTE_DB_NAME, process.env.REMOTE_DB_USERNAME, process.env.REMOTE_DB_PASSWORD, {
-    host: process.env.REMOTE_DB_HOST,
+const db = new Sequelize(process.env.LOCAL_DB_NAME, process.env.LOCAL_DB_USERNAME, process.env.LOCAL_DB_PASSWORD, {
+    host: process.env.LOCAL_DB_HOST,
     dialect: 'mysql'
 });
 

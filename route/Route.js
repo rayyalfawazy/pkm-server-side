@@ -4,12 +4,13 @@ const ProdukController = require('../controllers/ProdukController.js')
 const SampahController = require('../controllers/SampahController.js')
 const AuthController = require('../controllers/AuthController.js')
 const PembukuanController = require('../controllers/PembukuanController.js')
-const AuthUserMiddleware = require('../middleware/AuthUser.js')
+const AuthUserMiddleware = require('../middleware/AuthUser.js');
+const { request } = require('express');
 
 const router = express.Router()
 
-router.get('/rayyan', (req, res) => {
-    res.json(req.query)
+router.get('/', (req, res) => {
+    res.json({'message':'API Bank Sampah Anggur'})
 })
 
 // User Routing
@@ -51,6 +52,5 @@ router.patch('/sampah/:id', AuthUserMiddleware.verifyUser, SampahController.upda
 router.delete('/sampah/:id', AuthUserMiddleware.verifyUser, SampahController.deleteSampah)
 
 // Ongkir Routing
-
 
 module.exports = router

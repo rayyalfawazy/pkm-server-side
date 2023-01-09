@@ -80,6 +80,7 @@ const getSampahById = async (req, res) => {
 }
 
 const createSampah = async (req, res) => {
+    
     const {nama_sampah, 
             jenis_sampah,
             kategori_sampah,

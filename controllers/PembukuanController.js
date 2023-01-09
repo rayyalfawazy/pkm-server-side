@@ -35,7 +35,7 @@ const getPembukuan = async (req, res) => {
 const searchPembukuan = async (req, res) => {
     try{
         let response;
-        if (req.role === 'admin' || req.role === 'user') {
+        if (req.role === 'admin') {
             response = await Pembukuan.findAll({
                 include:[{
                     model:Users,

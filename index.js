@@ -5,6 +5,7 @@ const SequelizeStore = require('connect-session-sequelize')
 const router = require("./route/Route.js")
 const session = require("express-session");
 const cookieParser = require("cookie-parser");
+const FileUpload = require('express-fileupload');
 
 require('dotenv').config();
 
@@ -13,6 +14,10 @@ const app = express();
 
 // use express json
 app.use(express.json());
+
+// use express fileupload and static file
+app.use(FileUpload())
+app.use(express.static('public'))
 
 // use cors
 app.use(cors({

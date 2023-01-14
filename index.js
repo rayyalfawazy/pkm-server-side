@@ -61,4 +61,6 @@ try {
 app.use(router);
  
 // listen on port
-app.listen(process.env.APP_PORT, () => console.log(`API serve at http://localhost:${process.env.APP_PORT}/`));
+app.listen(process.env.APP_PORT, () => {
+    console.log(`API serve at http://localhost:${process.env.APP_PORT}/`)
+});
